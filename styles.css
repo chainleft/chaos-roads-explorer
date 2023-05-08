@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #dbdbdb;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+}
+
+#nft-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.nft-card {
+    width: 200px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.nft-card img {
+    width: 100%;
+    height: auto;
+}
