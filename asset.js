@@ -2,7 +2,6 @@ const provider = new ethers.providers.Web3Provider(window.ethereum);
 const nftContract = new ethers.Contract(contractAddress, contractABI, provider);
 
 const observeBtn = document.getElementById("observe-btn");
-
 const assetContent = document.getElementById("asset-content"); // Add this id to the div containing the asset content
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,7 +18,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (observeBtn) {
         observeBtn.addEventListener("click", async () => {
-            // ... rest of your code
+            try {
+                const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+                const account = accounts[0];
+                const signer = provider.getSigner(account);
+
+                const numberSlider = document.getElementById("number-slider");
+                const _number = parseInt(numberSlider.value, 10);
+
+                const nftContractWithSigner = nftContract.connect(signer);
+                const tx = await nftContractWithSigner.observe(tokenId, _number);
+                console.log("Transaction submitted:", tx);
+                await tx.wait();
+                console.log("Transaction mined");
+            } catch (error) {
+                console.error("Error calling observe function:", error);
+            }
         });
     }
 });
+
+
