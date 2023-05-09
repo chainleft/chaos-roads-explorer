@@ -55,7 +55,7 @@
             }
         }
         .txts {
-            font-size: calc(11px + 0.6vw);
+            font-size: calc(11px + 0.5vw);
             font-family: sans-serif;
             margin-top: 10px;
             text-align: center;
@@ -107,14 +107,13 @@
         const description = urlParams.get("description");
         const name = urlParams.get("name");
         const entropy = urlParams.get("entropy");
+        const entropyValue = parseInt(entropy, 10);
 
         nameElement.innerText = name;
         descriptionElement.innerText = description.replace(/\. /g, '.\n');
         entropyElement.innerText = `Entropy: ${entropy}`;
 
-        const start_timestamp = 1683140865;
-        const current_timestamp = Math.floor(Date.now() / 1000);
-        const max_entropy = Math.floor((current_timestamp - start_timestamp) / 86400);
+        const max_entropy = entropyValue;
 
         numberSlider.min = 0;
         numberSlider.max = max_entropy;
